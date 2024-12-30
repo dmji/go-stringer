@@ -19,7 +19,7 @@ var (
 	linecomment          = flag.Bool("linecomment", false, "use line comment text as printed text when present")
 	buildTags            = flag.String("tags", "", "comma-separated list of build tags to apply")
 	targetFile           = flag.String("target", ".", "comma-separated list of build tags to apply")
-	nameConvertToCaseStr = flag.String("nameConvertToCase", "none", "comma-separated list of build tags to apply")
+	nameConvertToCaseStr = flag.String("nameConvertToCase", "none", "text-style name of String() data")
 )
 
 // Usage is a replacement usage function for the flags package.
