@@ -5,14 +5,14 @@ package sample
 type UpdateableField uint8
 
 const (
-	Title         UpdateableField = iota // update_title
-	ReleaseStatus                        // release_status
-	LastCheckedDate
-	CreatedDate
-	UpdatedDate
-	TorrentFilesSize
-	Notes
-	Identifier
+	UpdateableFieldTitle         UpdateableField = iota // update_title
+	UpdateableFieldReleaseStatus                        // release_status
+	UpdateableFieldLastCheckedDate
+	UpdateableFieldCreatedDate
+	UpdateableFieldUpdatedDate
+	UpdateableFieldTorrentFilesSize
+	UpdateableFieldNotes
+	UpdateableFieldIdentifier
 )
 
 /*

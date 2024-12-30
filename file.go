@@ -4,12 +4,15 @@
 package main
 
 import (
+	"fmt"
 	"go/ast"
 	"go/constant"
 	"go/token"
 	"go/types"
 	"log"
 	"strings"
+
+	"github.com/gobeam/stringy"
 )
 
 // File holds a single parsed file and associated data.
@@ -22,6 +25,8 @@ type File struct {
 
 	trimPrefix  string
 	lineComment bool
+
+	nameConvertToCase _NameConvertTo
 }
 
 // genDecl processes one declaration clause.
@@ -112,6 +117,19 @@ func (f *File) genDecl(node ast.Node) bool {
 				v.name = strings.TrimSpace(c.Text())
 			} else {
 				v.name = strings.TrimPrefix(v.originalName, f.trimPrefix)
+
+				switch f.nameConvertToCase {
+				case _NameConvertToCamelCase:
+					v.name = stringy.New(v.name).CamelCase().ToLower()
+				case _NameConvertToKebabCase:
+					v.name = stringy.New(v.name).KebabCase().ToLower()
+				case _NameConvertToSnakeCase:
+					v.name = stringy.New(v.name).SnakeCase().ToLower()
+				case _NameConvertToNone:
+				default:
+					panic(fmt.Sprintf("unexpected _NameConvertTo: %#v", f.nameConvertToCase))
+				}
+
 			}
 			f.values = append(f.values, v)
 		}
