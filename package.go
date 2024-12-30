@@ -28,7 +28,7 @@ type Package struct {
 // logf is a test logging hook. It can be nil when not testing.
 func loadPackages(
 	patterns, tags []string,
-	trimPrefix string, lineComment bool, nameConvertToCase _NameConvertTo,
+	trimPrefix string, lineComment bool, nameConvertToCase _TextConvertTo,
 	logf func(format string, args ...interface{}),
 ) []*Package {
 	cfg := &packages.Config{

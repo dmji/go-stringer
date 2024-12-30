@@ -14,20 +14,6 @@ import (
 
 func work(args, tags, types []string, dir string) {
 
-	nameConvertToCase := _NameConvertToNone
-	switch *nameConvertToCaseStr {
-	case "none":
-		nameConvertToCase = _NameConvertToNone
-	case "camel_case":
-		nameConvertToCase = _NameConvertToCamelCase
-	case "snake_case":
-		nameConvertToCase = _NameConvertToSnakeCase
-	case "kebab_case":
-		nameConvertToCase = _NameConvertToKebabCase
-	default:
-		log.Fatalf("invalid value for -case flag: %s", nameConvertToCaseStr)
-	}
-
 	// For each type, generate code in the first package where the type is declared.
 	// The order of packages is as follows:
 	// package x
@@ -39,7 +25,7 @@ func work(args, tags, types []string, dir string) {
 	// from which they were generated.
 	//
 	// Types will be excluded when generated, to avoid repetitions.
-	pkgs := loadPackages(args, tags, *trimprefix, *linecomment, nameConvertToCase, nil /* logf */)
+	pkgs := loadPackages(args, tags, *trimprefix, *linecomment, _TextConvertToFromString(*nameConvertToCaseStr), nil /* logf */)
 	sort.Slice(pkgs, func(i, j int) bool {
 		// Put x_test packages last.
 		iTest := strings.HasSuffix(pkgs[i].name, "_test")
