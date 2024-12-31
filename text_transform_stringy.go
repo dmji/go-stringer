@@ -5,6 +5,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/gobeam/stringy"
 )
@@ -18,6 +19,8 @@ const (
 	_TextConvertToCamelCase
 	_TextConvertToSnakeCase
 	_TextConvertToKebabCase
+
+	_TextConvertToCount
 )
 
 func transformTextTo(nametransform _TextConvertTo, name string) string {
@@ -35,4 +38,12 @@ func transformTextTo(nametransform _TextConvertTo, name string) string {
 	}
 
 	return name
+}
+
+func availableValuesForFlagsDefault() string {
+	res := make([]string, 0, _TextConvertToCount)
+	for i := _TextConvertToNone; i <= _TextConvertToCount; i++ {
+		res = append(res, _TextConvertTo(i).String())
+	}
+	return strings.Join(res, ", ")
 }

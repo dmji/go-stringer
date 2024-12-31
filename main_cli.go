@@ -13,14 +13,18 @@ import (
 )
 
 var (
-	typeNames          = flag.String("type", "", "comma-separated list of type names; must be set")
-	output             = flag.String("output", "", "output file name; default srcdir/<type>_string.go")
+	typeNames            = flag.String("type", "", "comma-separated list of type names\nmust be set")
+	output               = flag.String("output", "", "output file name\ndefault srcdir/<type>_string.go")
+	outputTransformClass = flag.String("outputtransform", "none", "text-style name of default output name\navailable options: "+availableValuesForFlagsDefault())
+
 	trimprefix         = flag.String("trimprefix", "", "trim the `prefix` from the generated constant names")
 	linecomment        = flag.Bool("linecomment", false, "use line comment text as printed text when present")
-	buildTags          = flag.String("tags", "", "comma-separated list of build tags to apply")
-	targetFile         = flag.String("target", ".", "comma-separated list of build tags to apply")
-	nameTransformClass = flag.String("nametransform", "none", "text-style name of String() data")
-	genFromStringFn    = flag.Bool("genfromstringfn", false, "use to generate FromString() function")
+	nameTransformClass = flag.String("nametransform", "none", "text-style name of String() data\navailable options: "+availableValuesForFlagsDefault())
+
+	genFromStringFn = flag.Bool("genfromstringfn", false, "use to generate ${TypeName}FromString() function")
+
+	buildTags  = flag.String("tags", "", "comma-separated list of build tags to apply")
+	targetFile = flag.String("target", ".", "path to file or folder with desired types")
 )
 
 // Usage is a replacement usage function for the flags package.

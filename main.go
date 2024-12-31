@@ -10,8 +10,6 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
-
-	"github.com/gobeam/stringy"
 )
 
 func work(args, tags, types []string, dir string) {
@@ -110,5 +108,12 @@ func baseName(pkg *Package, typename string) string {
 	if pkg.hasTestFiles {
 		suffix = "string_test.go"
 	}
-	return fmt.Sprintf("%s_%s", stringy.New(typename).SnakeCase().ToLower(), suffix)
+
+	transform, err := _TextConvertToFromString(*outputTransformClass)
+	if err != nil {
+		panic(err)
+	}
+	name := transformTextTo(transform, typename)
+
+	return fmt.Sprintf("%s_%s", name, suffix)
 }
