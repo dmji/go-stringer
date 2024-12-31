@@ -13,7 +13,7 @@ func (g *Generator) buildOneRunFromStringParser(values []Value, typeName string)
 //	[1]: type name
 //	[2]: size of element array
 //	[3]: lowest defined value for type, as a string
-const stringFromStringOneRun = `func FromString%[1]s(s string) (%[1]s, error) {
+const stringFromStringOneRun = `func %[1]sFromString(s string) (%[1]s, error) {
 	for i:=0; i<%[2]d; i++ {
 		if e:= %[1]s(i+%[3]s); s == e.String() {
 			return e, nil
@@ -24,7 +24,7 @@ const stringFromStringOneRun = `func FromString%[1]s(s string) (%[1]s, error) {
 `
 
 func (g *Generator) buildMultipleRunsFromStringParser(runs [][]Value, typeName string) {
-	g.Printf("func FromString%[1]s(s string) (%[1]s, error) {\n", typeName)
+	g.Printf("func %[1]sFromString(s string) (%[1]s, error) {\n", typeName)
 	g.Printf("\tswitch s {\n")
 	for _, values := range runs {
 
@@ -45,7 +45,7 @@ func (g *Generator) buildMapFromStringParser(typeName string) {
 }
 
 // Argument to format is the type name.
-const stringFromStringMap = `func FromString%[1]s(s string) (%[1]s, error) {
+const stringFromStringMap = `func %[1]sFromString(s string) (%[1]s, error) {
 	for k, v := range _%[1]s_map {
 		if v == s {
             return k, nil
