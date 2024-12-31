@@ -28,12 +28,12 @@ func work(args, tags, types []string, dir string) {
 	//
 	// Types will be excluded when generated, to avoid repetitions.
 
-	nameConvertToCase, err := _TextConvertToFromString(*nameConvertToCaseStr)
+	nametransform, err := _TextConvertToFromString(*nameConvertToCaseStr)
 	if err != nil {
 		panic(err)
 	}
 
-	pkgs := loadPackages(args, tags, *trimprefix, *linecomment, nameConvertToCase, nil /* logf */)
+	pkgs := loadPackages(args, tags, *trimprefix, *linecomment, nametransform, nil /* logf */)
 	sort.Slice(pkgs, func(i, j int) bool {
 		// Put x_test packages last.
 		iTest := strings.HasSuffix(pkgs[i].name, "_test")

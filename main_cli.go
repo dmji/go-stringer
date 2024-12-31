@@ -19,8 +19,8 @@ var (
 	linecomment                      = flag.Bool("linecomment", false, "use line comment text as printed text when present")
 	buildTags                        = flag.String("tags", "", "comma-separated list of build tags to apply")
 	targetFile                       = flag.String("target", ".", "comma-separated list of build tags to apply")
-	nameConvertToCaseStr             = flag.String("nameConvertToCase", "none", "text-style name of String() data")
-	shouldGenerateFromStringFunction = flag.Bool("shouldGenerateFromString", false, "use to generate FromString() function")
+	nameConvertToCaseStr             = flag.String("nametransform", "none", "text-style name of String() data")
+	shouldGenerateFromStringFunction = flag.Bool("genfromstringfn", false, "use to generate FromString() function")
 )
 
 // Usage is a replacement usage function for the flags package.

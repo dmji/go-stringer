@@ -1,6 +1,6 @@
 package sample
 
-//go:generate go run ./../. -type=SimpleRune -linecomment=true -trimprefix=SimpleRune -nameConvertToCase=snake_case
+//go:generate go run ./../. -type=SimpleRune -linecomment=true -trimprefix=SimpleRune -nametransform=snake_case
 
 type SimpleRune int16
 

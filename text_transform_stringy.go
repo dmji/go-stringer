@@ -9,7 +9,7 @@ import (
 	"github.com/gobeam/stringy"
 )
 
-//go:generate go run . -type=_TextConvertTo -nameConvertToCase=snake_case -trimprefix=_TextConvertTo -output=text_transform_stringy_string.go -shouldGenerateFromString=true
+//go:generate go run . -type=_TextConvertTo -nametransform=snake_case -trimprefix=_TextConvertTo -output=text_transform_stringy_string.go -genfromstringfn=true
 
 type _TextConvertTo int
 
@@ -20,9 +20,9 @@ const (
 	_TextConvertToKebabCase
 )
 
-func transformTextTo(nameConvertToCase _TextConvertTo, name string) string {
+func transformTextTo(nametransform _TextConvertTo, name string) string {
 
-	switch nameConvertToCase {
+	switch nametransform {
 	case _TextConvertToCamelCase:
 		name = stringy.New(name).CamelCase().ToLower()
 	case _TextConvertToKebabCase:
@@ -31,7 +31,7 @@ func transformTextTo(nameConvertToCase _TextConvertTo, name string) string {
 		name = stringy.New(name).SnakeCase().ToLower()
 	case _TextConvertToNone:
 	default:
-		panic(fmt.Sprintf("unexpected _TextConvertTo: %#v", nameConvertToCase))
+		panic(fmt.Sprintf("unexpected _TextConvertTo: %#v", nametransform))
 	}
 
 	return name
