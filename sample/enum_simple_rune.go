@@ -2,10 +2,10 @@ package sample
 
 //go:generate go run ./../. -type=SimpleRune -linecomment=true -trimprefix=SimpleRune -nameConvertToCase=snake_case
 
-type SimpleRune uint8
+type SimpleRune int16
 
 const (
-	SimpleRuneFirst SimpleRune = iota
+	SimpleRuneFirst SimpleRune = iota * -1
 	SimpleRuneSecond
 	SimpleRuneThird
 	SimpleRuneFourth

@@ -40,7 +40,7 @@ func work(args, tags, types []string, dir string) {
 	for _, pkg := range pkgs {
 		g := Generator{
 			pkg:                              pkg,
-			shouldGenerateFromStringFunction: true,
+			shouldGenerateFromStringFunction: *shouldGenerateFromStringFunction,
 		}
 
 		// Print the header and package clause.
@@ -49,6 +49,9 @@ func work(args, tags, types []string, dir string) {
 		g.Printf("package %s", g.pkg.name)
 		g.Printf("\n")
 		g.Printf("import \"strconv\"\n") // Used by all methods.
+		if g.shouldGenerateFromStringFunction {
+			g.Printf("import \"errors\"\n") // Used by all methods if shouldGenerateFromStringFunction
+		}
 
 		// Run generate for types that can be found. Keep the rest for the remainingTypes iteration.
 		var foundTypes, remainingTypes []string
