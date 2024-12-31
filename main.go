@@ -26,6 +26,10 @@ func work(args, tags, types []string, dir string) {
 	//
 	// Types will be excluded when generated, to avoid repetitions.
 
+	i18nTransform, err := _TextConvertToFromString(*i18nTransformClass)
+	if err != nil {
+		panic(err)
+	}
 	nameTransform, err := _TextConvertToFromString(*nameTransformClass)
 	if err != nil {
 		panic(err)
@@ -46,7 +50,10 @@ func work(args, tags, types []string, dir string) {
 	for _, pkg := range pkgs {
 		g := Generator{
 			pkg:             pkg,
-			genFromStringFn: *genFromStringFn,
+			fromStringGenFn: *fromStringGenFn,
+			i18nGenConsts:   *i18nGenConsts,
+			i18nIdSuffix:    *i18nIdSuffix,
+			i18nTransform:   i18nTransform,
 		}
 
 		// Print the header and package clause.
@@ -55,7 +62,7 @@ func work(args, tags, types []string, dir string) {
 		g.Printf("package %s", g.pkg.name)
 		g.Printf("\n")
 		g.Printf("import \"strconv\"\n") // Used by all methods.
-		if g.genFromStringFn {
+		if g.fromStringGenFn {
 			g.Printf("import \"errors\"\n") // Used by all methods if shouldGenerateFromStringFunction
 		}
 

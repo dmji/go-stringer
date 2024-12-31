@@ -10,7 +10,9 @@ import (
 	"github.com/gobeam/stringy"
 )
 
-//go:generate go run . -type=_TextConvertTo -nametransform=snake_case_lower -trimprefix=_TextConvertTo -output=text_transform_stringy_string.go -genfromstringfn=true -linecomment=true
+// generate two time as if we add new enum values we use prev state and loose order but generate correct value via linecomment and second run align other values to snake case lower
+
+//go:generate go run . -type=_TextConvertTo -nametransform=snake_case_lower -trimprefix=_TextConvertTo -output=text_transform_stringy_string.go -fromstringgenfn=true -linecomment=true && go run . -type=_TextConvertTo -nametransform=snake_case_lower -trimprefix=_TextConvertTo -output=text_transform_stringy_string.go -fromstringgenfn=true -linecomment=true
 
 type _TextConvertTo int
 
@@ -22,14 +24,17 @@ const (
 	_TextConvertToCamelCase
 	_TextConvertToSnakeCase
 	_TextConvertToKebabCase
+	_TextConvertToPascalCase
 
 	_TextConvertToCamelCaseLower
 	_TextConvertToSnakeCaseLower //snake_case_lower
 	_TextConvertToKebabCaseLower
+	_TextConvertToPascalCaseLower
 
 	_TextConvertToCamelCaseUpper
 	_TextConvertToSnakeCaseUpper
 	_TextConvertToKebabCaseUpper
+	_TextConvertToPascalCaseUpper
 )
 
 func transformTextTo(nametransform _TextConvertTo, name string) string {
@@ -49,6 +54,8 @@ func transformTextTo(nametransform _TextConvertTo, name string) string {
 		return stringy.New(name).KebabCase().Get()
 	case _TextConvertToSnakeCase:
 		return stringy.New(name).SnakeCase().Get()
+	case _TextConvertToPascalCase:
+		return stringy.New(name).PascalCase().Get()
 
 	case _TextConvertToCamelCaseLower:
 		return stringy.New(name).CamelCase().ToLower()
@@ -56,6 +63,8 @@ func transformTextTo(nametransform _TextConvertTo, name string) string {
 		return stringy.New(name).KebabCase().ToLower()
 	case _TextConvertToSnakeCaseLower:
 		return stringy.New(name).SnakeCase().ToLower()
+	case _TextConvertToPascalCaseLower:
+		return stringy.New(name).PascalCase().ToLower()
 
 	case _TextConvertToCamelCaseUpper:
 		return stringy.New(name).CamelCase().ToUpper()
@@ -63,6 +72,8 @@ func transformTextTo(nametransform _TextConvertTo, name string) string {
 		return stringy.New(name).KebabCase().ToUpper()
 	case _TextConvertToSnakeCaseUpper:
 		return stringy.New(name).SnakeCase().ToUpper()
+	case _TextConvertToPascalCaseUpper:
+		return stringy.New(name).PascalCase().ToUpper()
 
 	default:
 		panic(fmt.Sprintf("unexpected _TextConvertTo: %#v", nametransform))

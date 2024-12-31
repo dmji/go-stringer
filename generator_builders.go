@@ -13,8 +13,13 @@ func (g *Generator) buildOneRun(runs [][]Value, typeName string) {
 	g.buildOneRunStringer(values, typeName)
 
 	// Type from string implementation
-	if g.genFromStringFn {
+	if g.fromStringGenFn {
 		g.buildOneRunFromStringParser(values, typeName)
+	}
+
+	// Consts for i18n identifiers
+	if g.i18nGenConsts {
+		g.buildRunsConsti18nListing(runs)
 	}
 }
 
@@ -28,8 +33,13 @@ func (g *Generator) buildMultipleRuns(runs [][]Value, typeName string) {
 	g.buildMultipleRunsStringer(runs, typeName)
 
 	// Type from string implementation
-	if g.genFromStringFn {
+	if g.fromStringGenFn {
 		g.buildMultipleRunsFromStringParser(runs, typeName)
+	}
+
+	// Consts for i18n identifiers
+	if g.i18nGenConsts {
+		g.buildRunsConsti18nListing(runs)
 	}
 }
 
@@ -52,8 +62,13 @@ func (g *Generator) buildMap(runs [][]Value, typeName string) {
 	g.buildMapStringer(typeName)
 
 	// Type from string implementation
-	if g.genFromStringFn {
+	if g.fromStringGenFn {
 		g.buildMapFromStringParser(typeName)
+	}
+
+	// Consts for i18n identifiers
+	if g.i18nGenConsts {
+		g.buildRunsConsti18nListing(runs)
 	}
 }
 

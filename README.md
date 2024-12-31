@@ -14,9 +14,8 @@ To extend the generator functional to get automatically the text in the format I
 - Added samples for each generator builder case
 - Added flag target to make it easier to run debug on samples
 - Added flag nametransform to convert strings from the original name to the one I need using github.com/gobeam/stringy `my pet project required a snake case and I didn't want to do it by hand`
-- Added flag genfromstringfn to activate generation of ${TypeName}FromString() functions
+- Added flag fromstringgenfn to activate generation of ${TypeName}FromString() functions
 - Added flag outputtransform to convert strings of file names in similar way as names `example: originally it generate type PatternRuneWithRange by default as 'patternrunewithrange_string.go' but i want to get it as 'pattern_rune_with_range_string.go'`
-
-## TODO:
-
-- [ ] add some generation for go-i18n to eleminate thinking of DefaultMessage.ID
+- Added flag i18ngenconst to activate generation consts with ID string {PackageName}{TypeValue}{Suffix}
+- Added flag i18ntransformto convert string id format similar to nametransform
+- Added flag i18nidsuffix to append custom text to the end of string id

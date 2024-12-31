@@ -21,7 +21,10 @@ var (
 	linecomment        = flag.Bool("linecomment", false, "use line comment text as printed text when present")
 	nameTransformClass = flag.String("nametransform", "none", "text-style name of String() data\navailable options: "+availableValuesForFlagsDefault())
 
-	genFromStringFn = flag.Bool("genfromstringfn", false, "use to generate ${TypeName}FromString() function")
+	fromStringGenFn    = flag.Bool("fromstringgenfn", false, "use to generate ${TypeName}FromString() function")
+	i18nGenConsts      = flag.Bool("i18ngenconst", false, "use to generate consts with id for i18n")
+	i18nIdSuffix       = flag.String("i18nidsuffix", "", "suffix to generate consts with id for i18n")
+	i18nTransformClass = flag.String("i18ntransform", "pascal_case", "text-style name of i18n ID\navailable options: "+availableValuesForFlagsDefault())
 
 	buildTags  = flag.String("tags", "", "comma-separated list of build tags to apply")
 	targetFile = flag.String("target", ".", "path to file or folder with desired types")
