@@ -49,11 +49,12 @@ func work(args, tags, types []string, dir string) {
 
 	for _, pkg := range pkgs {
 		g := Generator{
-			pkg:             pkg,
-			fromStringGenFn: *fromStringGenFn,
-			i18nGenConsts:   *i18nGenConsts,
-			i18nIdSuffix:    *i18nIdSuffix,
-			i18nTransform:   i18nTransform,
+			pkg:              pkg,
+			fromStringGenFn:  *fromStringGenFn,
+			i18nGenConsts:    *i18nGenConsts,
+			i18nIdSuffix:     *i18nIdSuffix,
+			i18nIdNamePrefix: *i18nIdNamePrefix,
+			i18nTransform:    i18nTransform,
 		}
 
 		// Print the header and package clause.

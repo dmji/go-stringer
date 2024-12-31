@@ -24,6 +24,7 @@ var (
 	fromStringGenFn    = flag.Bool("fromstringgenfn", false, "use to generate ${TypeName}FromString() function")
 	i18nGenConsts      = flag.Bool("i18ngenconst", false, "use to generate consts with id for i18n")
 	i18nIdSuffix       = flag.String("i18nidsuffix", "", "suffix to generate consts with id for i18n")
+	i18nIdNamePrefix   = flag.String("i18nidnameprefix", "", "prefix to generate consts names with id for i18n")
 	i18nTransformClass = flag.String("i18ntransform", "pascal_case", "text-style name of i18n ID\navailable options: "+availableValuesForFlagsDefault())
 
 	buildTags  = flag.String("tags", "", "comma-separated list of build tags to apply")
@@ -32,9 +33,9 @@ var (
 
 // Usage is a replacement usage function for the flags package.
 func Usage() {
-	fmt.Fprintf(os.Stderr, "Usage of stringer:\n")
-	fmt.Fprintf(os.Stderr, "\tstringer [flags] -type T [directory]\n")
-	fmt.Fprintf(os.Stderr, "\tstringer [flags] -type T files... # Must be a single package\n")
+	fmt.Fprintf(os.Stderr, "Usage of go-stringer (stringer fork):\n")
+	fmt.Fprintf(os.Stderr, "\tgo-stringer [flags] -type T [directory]\n")
+	fmt.Fprintf(os.Stderr, "\tgo-stringer [flags] -type T files... # Must be a single package\n")
 	fmt.Fprintf(os.Stderr, "For more information, see:\n")
 	fmt.Fprintf(os.Stderr, "\thttps://pkg.go.dev/golang.org/x/tools/cmd/stringer\n")
 	fmt.Fprintf(os.Stderr, "Flags:\n")

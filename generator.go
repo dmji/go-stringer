@@ -17,10 +17,11 @@ type Generator struct {
 	buf bytes.Buffer // Accumulated output.
 	pkg *Package     // Package we are scanning.
 
-	fromStringGenFn bool
-	i18nGenConsts   bool
-	i18nIdSuffix    string
-	i18nTransform   _TextConvertTo
+	fromStringGenFn  bool
+	i18nGenConsts    bool
+	i18nIdSuffix     string
+	i18nIdNamePrefix string
+	i18nTransform    _TextConvertTo
 
 	//lint:ignore U1000 test logging hook; nil when not testing
 	logf func(format string, args ...interface{})

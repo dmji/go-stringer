@@ -25,7 +25,7 @@ func (g *Generator) buildRunsConsti18nListing(runs [][]Value) {
 		// single value case
 		for _, v := range values {
 			id := transformTextTo(g.i18nTransform, g.pkg.name+v.originalName+g.i18nIdSuffix)
-			g.Printf("\t%s = \"%s\"\n", v.originalName+"_i18n_ID", id)
+			g.Printf("\t%s = \"%s\"\n", g.i18nIdNamePrefix+v.originalName+"_i18n_ID", id)
 		}
 	}
 
