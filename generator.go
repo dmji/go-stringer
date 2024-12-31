@@ -17,6 +17,8 @@ type Generator struct {
 	buf bytes.Buffer // Accumulated output.
 	pkg *Package     // Package we are scanning.
 
+	shouldGenerateFromStringFunction bool
+
 	logf func(format string, args ...interface{}) // test logging hook; nil when not testing
 }
 

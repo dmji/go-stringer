@@ -39,7 +39,8 @@ func work(args, tags, types []string, dir string) {
 
 	for _, pkg := range pkgs {
 		g := Generator{
-			pkg: pkg,
+			pkg:                              pkg,
+			shouldGenerateFromStringFunction: true,
 		}
 
 		// Print the header and package clause.
