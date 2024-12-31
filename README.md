@@ -17,3 +17,8 @@ To extend the generator functional to get automatically the text in the format I
 - Added flag target to make it easier to run debug on samples
 - Added flag nameConvertToCase to convert strings from the original name to the one I need using github.com/gobeam/stringy `my pet project required a snake case and I didn't want to do it by hand`
 - Added flag shouldGenerateFromString to activate generation of FromStringTypeName() functions
+
+## TODO:
+
+- [ ] modify default output to more convient snake-case
+- [ ] add some generation for go-i18n to eleminate thinking of DefaultMessage.ID
