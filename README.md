@@ -10,17 +10,21 @@ To extend the generator functional to get automatically the text in the format I
 
 ## Changes from original
 
-- For my comfort, the monolithic stringer.go is divided into component files
-- Added samples for each generator builder case
-- Added flag _target_ to make it easier to run debug on samples
-- Added flag _nametransform_ to convert strings from the original name to the one I need using github.com/gobeam/stringy `my pet project required a snake case and I didn't want to do it by hand`
-- Added flag _fromstringgenfn_ to activate generation of ${TypeName}FromString() functions
-- Added flag _outputtransform_ to convert strings of file names in similar way as names `example: originally it generate type PatternRuneWithRange by default as 'patternrunewithrange_string.go' but i want to get it as 'pattern_rune_with_range_string.go'`
-- Added flag _i18ngenconst_ to activate generation consts with ID string {PackageName}{TypeValue}{Suffix}
-- Added flag _i18ntransformto_ convert string id format similar to nametransform
-- Added flag _i18nidsuffix_ to append custom text to the end of string id
-- Added flag _i18nidnameprefix_ to append custom text before the const name
-- Replaced flag _i18ngenconst_ to _i18nidnameprefix_ to append custom text afterthe const name, if not set the consts would not create
+- Subjective improvements
+  - For my comfort, the monolithic stringer.go is divided into component files
+  - Added samples for each generator builder case
+  - Added flag _target_ to make it easier to run debug on samples
+- Improved file naming of output files in case no special name defined
+  - Added flag _outputtransform_ to convert strings of file names in similar way as names `example: originally it generate type PatternRuneWithRange by default as 'patternrunewithrange_string.go' but i want to get it as 'pattern_rune_with_range_string.go'`
+- Improved string content generation
+  - Added flag _nametransform_ to convert strings from the original name to the one I need using github.com/gobeam/stringy `my pet project required a snake case and I didn't want to do it by hand`
+- Added new optional stage to generate function go parse enum from string
+  - Added flag _fromstringgenfn_ to activate generation of ${TypeName}FromString() functions
+- Added new optional stage to generate extra consts in format {Prefix}{PackageName}{TypeValue}{Suffix}, to active it required to define one of activation flag below
+  - Added flag _extraconstsnamesuffix_ to append custom text to the end of string id (first of activation flag)
+  - Added flag _extraconstsnameprefix_ to append custom text before the const name (second of activation flag)
+  - Added flag _i18ntransformto_ convert string id format similar to nametransform (optional)
+  - Added flag _extraconstsvaluesuffix_ to append some text to each const value (optional)
 
 ## How to use
 
@@ -46,7 +50,7 @@ package main
 type SimpleRune int16
 
 const (
-	SimpleRuneFirst SimpleRune = iota * -1
+	SimpleRuneFirst SimpleRune = iota
 	SimpleRuneSecond
 	SimpleRuneThird
 	SimpleRuneFourth
