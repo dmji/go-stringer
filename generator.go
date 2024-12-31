@@ -19,7 +19,8 @@ type Generator struct {
 
 	shouldGenerateFromStringFunction bool
 
-	logf func(format string, args ...interface{}) // test logging hook; nil when not testing
+	//lint:ignore U1000 test logging hook; nil when not testing
+	logf func(format string, args ...interface{})
 }
 
 func (g *Generator) Printf(format string, args ...interface{}) {
