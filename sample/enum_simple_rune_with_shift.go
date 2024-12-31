@@ -1,6 +1,6 @@
 package sample
 
-//go:generate go run ./../. -type=SimpleRuneWithShift -linecomment=true -trimprefix=SimpleRuneWithShift -nametransform=snake_case_lower
+//go:generate go run ./../. -type=SimpleRuneWithShift -linecomment=true -trimprefix=SimpleRuneWithShift -nametransform=snake_case_lower -outputtransform=snake_case_lower
 
 type SimpleRuneWithShift uint8
 
