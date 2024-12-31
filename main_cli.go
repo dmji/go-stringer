@@ -13,14 +13,14 @@ import (
 )
 
 var (
-	typeNames                        = flag.String("type", "", "comma-separated list of type names; must be set")
-	output                           = flag.String("output", "", "output file name; default srcdir/<type>_string.go")
-	trimprefix                       = flag.String("trimprefix", "", "trim the `prefix` from the generated constant names")
-	linecomment                      = flag.Bool("linecomment", false, "use line comment text as printed text when present")
-	buildTags                        = flag.String("tags", "", "comma-separated list of build tags to apply")
-	targetFile                       = flag.String("target", ".", "comma-separated list of build tags to apply")
-	nameConvertToCaseStr             = flag.String("nametransform", "none", "text-style name of String() data")
-	shouldGenerateFromStringFunction = flag.Bool("genfromstringfn", false, "use to generate FromString() function")
+	typeNames          = flag.String("type", "", "comma-separated list of type names; must be set")
+	output             = flag.String("output", "", "output file name; default srcdir/<type>_string.go")
+	trimprefix         = flag.String("trimprefix", "", "trim the `prefix` from the generated constant names")
+	linecomment        = flag.Bool("linecomment", false, "use line comment text as printed text when present")
+	buildTags          = flag.String("tags", "", "comma-separated list of build tags to apply")
+	targetFile         = flag.String("target", ".", "comma-separated list of build tags to apply")
+	nameTransformClass = flag.String("nametransform", "none", "text-style name of String() data")
+	genFromStringFn    = flag.Bool("genfromstringfn", false, "use to generate FromString() function")
 )
 
 // Usage is a replacement usage function for the flags package.

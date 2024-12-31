@@ -13,7 +13,7 @@ func (g *Generator) buildOneRun(runs [][]Value, typeName string) {
 	g.buildOneRunStringer(values, typeName)
 
 	// Type from string implementation
-	if g.shouldGenerateFromStringFunction {
+	if g.genFromStringFn {
 		g.buildOneRunFromStringParser(values, typeName)
 	}
 }
@@ -28,7 +28,7 @@ func (g *Generator) buildMultipleRuns(runs [][]Value, typeName string) {
 	g.buildMultipleRunsStringer(runs, typeName)
 
 	// Type from string implementation
-	if g.shouldGenerateFromStringFunction {
+	if g.genFromStringFn {
 		g.buildMultipleRunsFromStringParser(runs, typeName)
 	}
 }
@@ -52,7 +52,7 @@ func (g *Generator) buildMap(runs [][]Value, typeName string) {
 	g.buildMapStringer(typeName)
 
 	// Type from string implementation
-	if g.shouldGenerateFromStringFunction {
+	if g.genFromStringFn {
 		g.buildMapFromStringParser(typeName)
 	}
 }

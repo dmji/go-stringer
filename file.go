@@ -23,7 +23,7 @@ type File struct {
 	trimPrefix  string
 	lineComment bool
 
-	nametransform _TextConvertTo
+	nameTransform _TextConvertTo
 }
 
 // genDecl processes one declaration clause.
@@ -114,7 +114,7 @@ func (f *File) genDecl(node ast.Node) bool {
 				v.name = strings.TrimSpace(c.Text())
 			} else {
 				v.name = strings.TrimPrefix(v.originalName, f.trimPrefix)
-				v.name = transformTextTo(f.nametransform, v.name)
+				v.name = transformTextTo(f.nameTransform, v.name)
 			}
 			f.values = append(f.values, v)
 		}

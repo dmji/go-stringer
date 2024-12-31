@@ -28,12 +28,12 @@ func work(args, tags, types []string, dir string) {
 	//
 	// Types will be excluded when generated, to avoid repetitions.
 
-	nametransform, err := _TextConvertToFromString(*nameConvertToCaseStr)
+	nameTransform, err := _TextConvertToFromString(*nameTransformClass)
 	if err != nil {
 		panic(err)
 	}
 
-	pkgs := loadPackages(args, tags, *trimprefix, *linecomment, nametransform, nil /* logf */)
+	pkgs := loadPackages(args, tags, *trimprefix, *linecomment, nameTransform, nil /* logf */)
 	sort.Slice(pkgs, func(i, j int) bool {
 		// Put x_test packages last.
 		iTest := strings.HasSuffix(pkgs[i].name, "_test")
@@ -47,8 +47,8 @@ func work(args, tags, types []string, dir string) {
 
 	for _, pkg := range pkgs {
 		g := Generator{
-			pkg:                              pkg,
-			shouldGenerateFromStringFunction: *shouldGenerateFromStringFunction,
+			pkg:             pkg,
+			genFromStringFn: *genFromStringFn,
 		}
 
 		// Print the header and package clause.
@@ -57,7 +57,7 @@ func work(args, tags, types []string, dir string) {
 		g.Printf("package %s", g.pkg.name)
 		g.Printf("\n")
 		g.Printf("import \"strconv\"\n") // Used by all methods.
-		if g.shouldGenerateFromStringFunction {
+		if g.genFromStringFn {
 			g.Printf("import \"errors\"\n") // Used by all methods if shouldGenerateFromStringFunction
 		}
 

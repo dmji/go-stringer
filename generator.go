@@ -17,7 +17,7 @@ type Generator struct {
 	buf bytes.Buffer // Accumulated output.
 	pkg *Package     // Package we are scanning.
 
-	shouldGenerateFromStringFunction bool
+	genFromStringFn bool
 
 	//lint:ignore U1000 test logging hook; nil when not testing
 	logf func(format string, args ...interface{})
