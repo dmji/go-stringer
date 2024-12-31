@@ -1,6 +1,6 @@
 package sample
 
-//go:generate go run ./../. -type=PatternRuneWithRange -linecomment=true -trimprefix=PatternRuneWithRange -nametransform=snake_case_lower -outputtransform=snake_case_lower
+//go:generate go run ./../. -type=PatternRuneWithRange -trimprefix=PatternRuneWithRange -linecomment=true -nametransform=snake_case_lower -outputtransform=snake_case_lower -i18ngenconst=true -i18ntransform=snake_case_lower -i18nidsuffix=Presentation
 
 type PatternRuneWithRange uint8
 
