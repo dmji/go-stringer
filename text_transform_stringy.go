@@ -5,12 +5,11 @@ package main
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/gobeam/stringy"
 )
 
-//go:generate go run . -type=_TextConvertTo -nameConvertToCase=snake_case -trimprefix=_TextConvertTo -output=text_transform_stringy_string.go
+//go:generate go run . -type=_TextConvertTo -nameConvertToCase=snake_case -trimprefix=_TextConvertTo -output=text_transform_stringy_string.go -shouldGenerateFromString=true
 
 type _TextConvertTo int
 
@@ -20,22 +19,6 @@ const (
 	_TextConvertToSnakeCase
 	_TextConvertToKebabCase
 )
-
-func _TextConvertToFromString(s string) _TextConvertTo {
-
-	switch s {
-	case _TextConvertToCamelCase.String():
-		return _TextConvertToCamelCase
-	case _TextConvertToSnakeCase.String():
-		return _TextConvertToSnakeCase
-	case _TextConvertToKebabCase.String():
-		return _TextConvertToKebabCase
-	case _TextConvertToNone.String():
-	default:
-		log.Fatalf("invalid value for -case flag: %s", s)
-	}
-	return _TextConvertToNone
-}
 
 func transformTextTo(nameConvertToCase _TextConvertTo, name string) string {
 

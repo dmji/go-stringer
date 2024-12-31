@@ -10,6 +10,8 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+
+	"github.com/gobeam/stringy"
 )
 
 func work(args, tags, types []string, dir string) {
@@ -25,7 +27,13 @@ func work(args, tags, types []string, dir string) {
 	// from which they were generated.
 	//
 	// Types will be excluded when generated, to avoid repetitions.
-	pkgs := loadPackages(args, tags, *trimprefix, *linecomment, _TextConvertToFromString(*nameConvertToCaseStr), nil /* logf */)
+
+	nameConvertToCase, err := _TextConvertToFromString(*nameConvertToCaseStr)
+	if err != nil {
+		panic(err)
+	}
+
+	pkgs := loadPackages(args, tags, *trimprefix, *linecomment, nameConvertToCase, nil /* logf */)
 	sort.Slice(pkgs, func(i, j int) bool {
 		// Put x_test packages last.
 		iTest := strings.HasSuffix(pkgs[i].name, "_test")
