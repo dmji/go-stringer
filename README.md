@@ -19,3 +19,28 @@ To extend the generator functional to get automatically the text in the format I
 - Added flag i18ngenconst to activate generation consts with ID string {PackageName}{TypeValue}{Suffix}
 - Added flag i18ntransformto convert string id format similar to nametransform
 - Added flag i18nidsuffix to append custom text to the end of string id
+
+## How to use
+
+Install:
+
+```bash
+go install github.com/dmji/go-stringer@latest
+```
+
+Sample of generage comment:
+
+```go
+package main
+
+//go:generate go-stringer -type=SimpleRune -trimprefix=SimpleRune -linecomment=true -nametransform=snake_case_lower -outputtransform=snake_case_lower -i18ngenconst=true -i18ntransform=snake_case_lower -i18nidsuffix=Presentation
+
+type SimpleRune int16
+
+const (
+	SimpleRuneFirst SimpleRune = iota * -1
+	SimpleRuneSecond
+	SimpleRuneThird
+	SimpleRuneFourth
+)
+```
