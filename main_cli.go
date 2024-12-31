@@ -15,7 +15,7 @@ import (
 var (
 	typeNames            = flag.String("type", "", "comma-separated list of type names\nmust be set")
 	output               = flag.String("output", "", "output file name\ndefault srcdir/<type>_string.go")
-	outputTransformClass = flag.String("outputtransform", "none", "text-style name of default output name\navailable options: "+availableValuesForFlagsDefault())
+	outputTransformClass = flag.String("outputtransform", "lower", "text-style name of default output name\navailable options: "+availableValuesForFlagsDefault())
 
 	trimprefix         = flag.String("trimprefix", "", "trim the `prefix` from the generated constant names")
 	linecomment        = flag.Bool("linecomment", false, "use line comment text as printed text when present")
