@@ -102,5 +102,5 @@ func baseName(pkg *Package, typename string) string {
 	if pkg.hasTestFiles {
 		suffix = "string_test.go"
 	}
-	return fmt.Sprintf("%s_%s", strings.ToLower(typename), suffix)
+	return fmt.Sprintf("%s_%s", stringy.New(typename).SnakeCase().ToLower(), suffix)
 }
