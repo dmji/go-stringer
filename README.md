@@ -20,6 +20,7 @@ To extend the generator functional to get automatically the text in the format I
 - Added flag _i18ntransformto_ convert string id format similar to nametransform
 - Added flag _i18nidsuffix_ to append custom text to the end of string id
 - Added flag _i18nidnameprefix_ to append custom text before the const name
+- Replaced flag _i18ngenconst_ to _i18nidnameprefix_ to append custom text afterthe const name, if not set the consts would not create
 
 ## How to use
 
@@ -40,7 +41,7 @@ Sample of generage comment:
 ```go
 package main
 
-//go:generate go-stringer -type=SimpleRune -trimprefix=SimpleRune -linecomment=true -nametransform=snake_case_lower -outputtransform=snake_case_lower -i18ngenconst=true -i18ntransform=snake_case_lower -i18nidsuffix=Presentation
+//go:generate go-stringer -type=SimpleRune -trimprefix=SimpleRune -linecomment=true -nametransform=snake_case_lower -outputtransform=snake_case_lower -extraconstsnamesuffix=_i18n_ID -extraconstsvaluetransform=snake_case_lower -extraconstsvaluesuffix=Presentation
 
 type SimpleRune int16
 

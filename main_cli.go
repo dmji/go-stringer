@@ -21,14 +21,18 @@ var (
 	linecomment        = flag.Bool("linecomment", false, "use line comment text as printed text when present")
 	nameTransformClass = flag.String("nametransform", "none", "text-style name of String() data\navailable options: "+availableValuesForFlagsDefault())
 
-	fromStringGenFn    = flag.Bool("fromstringgenfn", false, "use to generate ${TypeName}FromString() function")
-	i18nGenConsts      = flag.Bool("i18ngenconst", false, "use to generate consts with id for i18n")
-	i18nIdSuffix       = flag.String("i18nidsuffix", "", "suffix to generate consts with id for i18n")
-	i18nIdNamePrefix   = flag.String("i18nidnameprefix", "", "prefix to generate consts names with id for i18n")
-	i18nTransformClass = flag.String("i18ntransform", "pascal_case", "text-style name of i18n ID\navailable options: "+availableValuesForFlagsDefault())
+	fromStringGenFn = flag.Bool("fromstringgenfn", false, "use to generate ${TypeName}FromString() function")
 
 	buildTags  = flag.String("tags", "", "comma-separated list of build tags to apply")
 	targetFile = flag.String("target", ".", "path to file or folder with desired types")
+)
+
+// parameters of extra consts generation (optional)
+var (
+	extraConstValueSuffix         = flag.String("extraconstsvaluesuffix", "", "suffix to generate consts with id for i18n")
+	extraConstNamePrefix          = flag.String("extraconstsnameprefix", "", "prefix to generate consts names with id for i18n")
+	extraConstNameSuffix          = flag.String("extraconstsnamesuffix", "", "suffix to generate consts names with id for i18n")
+	extraConstValueTransformClass = flag.String("extraconstsvaluetransform", "pascal_case", "text-style name of i18n ID\navailable options: "+availableValuesForFlagsDefault())
 )
 
 // Usage is a replacement usage function for the flags package.
@@ -44,7 +48,7 @@ func Usage() {
 
 func main() {
 	log.SetFlags(0)
-	log.SetPrefix("stringer: ")
+	log.SetPrefix("go-stringer: ")
 	flag.Usage = Usage
 	flag.Parse()
 	_ = targetFile

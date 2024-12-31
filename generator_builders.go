@@ -18,8 +18,8 @@ func (g *Generator) buildOneRun(runs [][]Value, typeName string) {
 	}
 
 	// Consts for i18n identifiers
-	if g.i18nGenConsts {
-		g.buildRunsConsti18nListing(runs)
+	if g.generateConstParams != nil && g.generateConstParams.IsInit() {
+		buildRunsConsti18nListing(g.generateConstParams, runs, g.pkg.name, g.Printf)
 	}
 }
 
@@ -38,8 +38,8 @@ func (g *Generator) buildMultipleRuns(runs [][]Value, typeName string) {
 	}
 
 	// Consts for i18n identifiers
-	if g.i18nGenConsts {
-		g.buildRunsConsti18nListing(runs)
+	if g.generateConstParams != nil && g.generateConstParams.IsInit() {
+		buildRunsConsti18nListing(g.generateConstParams, runs, g.pkg.name, g.Printf)
 	}
 }
 
@@ -67,8 +67,8 @@ func (g *Generator) buildMap(runs [][]Value, typeName string) {
 	}
 
 	// Consts for i18n identifiers
-	if g.i18nGenConsts {
-		g.buildRunsConsti18nListing(runs)
+	if g.generateConstParams != nil && g.generateConstParams.IsInit() {
+		buildRunsConsti18nListing(g.generateConstParams, runs, g.pkg.name, g.Printf)
 	}
 }
 

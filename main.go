@@ -26,7 +26,7 @@ func work(args, tags, types []string, dir string) {
 	//
 	// Types will be excluded when generated, to avoid repetitions.
 
-	i18nTransform, err := _TextConvertToFromString(*i18nTransformClass)
+	extraConstValueTransformClass, err := _TextConvertToFromString(*extraConstValueTransformClass)
 	if err != nil {
 		panic(err)
 	}
@@ -47,14 +47,18 @@ func work(args, tags, types []string, dir string) {
 		return len(pkgs[i].files) < len(pkgs[j].files)
 	})
 
+	generateConstParams := &ConstGenerationParams{
+		ValueTransformClass: extraConstValueTransformClass,
+		ValueSuffix:         *extraConstValueSuffix,
+		NamePrefix:          *extraConstNamePrefix,
+		NameSuffix:          *extraConstNameSuffix,
+	}
+
 	for _, pkg := range pkgs {
 		g := Generator{
-			pkg:              pkg,
-			fromStringGenFn:  *fromStringGenFn,
-			i18nGenConsts:    *i18nGenConsts,
-			i18nIdSuffix:     *i18nIdSuffix,
-			i18nIdNamePrefix: *i18nIdNamePrefix,
-			i18nTransform:    i18nTransform,
+			pkg:                 pkg,
+			fromStringGenFn:     *fromStringGenFn,
+			generateConstParams: generateConstParams,
 		}
 
 		// Print the header and package clause.
