@@ -23,8 +23,13 @@ To extend the generator functional to get automatically the text in the format I
 - Added new optional stage to generate extra consts in format {Prefix}{PackageName}{TypeValue}{Suffix}, to active it required to define one of activation flag below
   - Added flag _extraconstsnamesuffix_ to append custom text to the end of string id (first of activation flag)
   - Added flag _extraconstsnameprefix_ to append custom text before the const name (second of activation flag)
-  - Added flag _i18ntransformto_ convert string id format similar to nametransform (optional)
+  - Added flag _extraconstsvaluetransform_ convert string id format similar to nametransform (optional)
   - Added flag _extraconstsvaluesuffix_ to append some text to each const value (optional)
+- Added new optional stage to generate marshalling and unmarshalling functions for specific packages
+  - Added flag _marshaljson_ to append implementations of json.Marshaler and json.Unmarshaler
+  - Added flag _marshaljsonpkg_ to specify url to json package if using forked version or similar
+  - Added flag _marshalqs_ to append implementations of qs.MarshalQS and qs.UnmarshalQS
+  - Added flag _marshalqspkg_ to specify url to qs package if using forked version or similar
 
 ## How to use
 

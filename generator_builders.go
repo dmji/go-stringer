@@ -17,10 +17,7 @@ func (g *Generator) buildOneRun(runs [][]Value, typeName string) {
 		g.buildOneRunFromStringParser(values, typeName)
 	}
 
-	// Consts for i18n identifiers
-	if g.generateConstParams != nil && g.generateConstParams.IsInit() {
-		buildRunsConsti18nListing(g.generateConstParams, runs, g.pkg.name, g.Printf)
-	}
+	g.buildExtras(runs, typeName)
 }
 
 // buildMultipleRuns generates the variables and String method for multiple runs of contiguous values.
@@ -37,10 +34,7 @@ func (g *Generator) buildMultipleRuns(runs [][]Value, typeName string) {
 		g.buildMultipleRunsFromStringParser(runs, typeName)
 	}
 
-	// Consts for i18n identifiers
-	if g.generateConstParams != nil && g.generateConstParams.IsInit() {
-		buildRunsConsti18nListing(g.generateConstParams, runs, g.pkg.name, g.Printf)
-	}
+	g.buildExtras(runs, typeName)
 }
 
 // buildMap handles the case where the space is so sparse a map is a reasonable fallback.
@@ -66,10 +60,7 @@ func (g *Generator) buildMap(runs [][]Value, typeName string) {
 		g.buildMapFromStringParser(typeName)
 	}
 
-	// Consts for i18n identifiers
-	if g.generateConstParams != nil && g.generateConstParams.IsInit() {
-		buildRunsConsti18nListing(g.generateConstParams, runs, g.pkg.name, g.Printf)
-	}
+	g.buildExtras(runs, typeName)
 }
 
 // declareNameVars declares the concatenated names string representing all the values in the runs.
@@ -81,4 +72,16 @@ func (g *Generator) declareNameVars(runs [][]Value, typeName string, suffix stri
 		}
 	}
 	g.Printf("\"\n")
+}
+
+func (g *Generator) buildExtras(runs [][]Value, typeName string) {
+	// Consts listing
+	if g.generateConstParams != nil && g.generateConstParams.IsInit() {
+		buildRunsConstsListing(g.generateConstParams, runs, g.pkg.name, g.Printf)
+	}
+
+	// Marshalling
+	if g.marshallingParams != nil && g.marshallingParams.IsInit() {
+		buildRunsMarshalling(g.marshallingParams, typeName, g.Printf)
+	}
 }

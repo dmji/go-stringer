@@ -1,6 +1,6 @@
 package sample
 
-//go:generate go run ./../. -type=PatternMapRune -trimprefix=PatternMapRune -linecomment=true -nametransform=snake_case_lower -outputtransform=snake_case_lower -extraconstsnamesuffix=_i18n_ID -extraconstsvaluetransform=snake_case_lower -extraconstsvaluesuffix=Presentation -extraconstsnameprefix=_
+//go:generate go run ./../. -type=PatternMapRune -trimprefix=PatternMapRune -marshaljson -fromstringgenfn -linecomment=true -nametransform=snake_case_lower -outputtransform=snake_case_lower -extraconstsnamesuffix=_i18n_ID -extraconstsvaluetransform=snake_case_lower -extraconstsvaluesuffix=Presentation -extraconstsnameprefix=_
 
 type PatternMapRune uint16
 

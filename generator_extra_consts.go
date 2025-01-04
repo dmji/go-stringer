@@ -14,7 +14,7 @@ func (g *ConstGenerationParams) IsInit() bool {
 	return len(g.NameSuffix) > 0 || len(g.NamePrefix) > 0
 }
 
-func buildRunsConsti18nListing(p *ConstGenerationParams, runs [][]Value, pgkName string, gPrintf func(string, ...interface{})) {
+func buildRunsConstsListing(p *ConstGenerationParams, runs [][]Value, pgkName string, gPrintf func(string, ...interface{})) {
 	gPrintf("\nconst (\n")
 
 	for _, values := range runs {

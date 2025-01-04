@@ -19,6 +19,7 @@ type Generator struct {
 
 	fromStringGenFn     bool
 	generateConstParams *ConstGenerationParams
+	marshallingParams   *MarshallingGenerationParams
 
 	//lint:ignore U1000 test logging hook; nil when not testing
 	logf func(format string, args ...interface{})

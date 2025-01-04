@@ -35,6 +35,15 @@ var (
 	extraConstValueTransformClass = flag.String("extraconstsvaluetransform", "pascal_case", "text-style name of i18n ID\navailable options: "+availableValuesForFlagsDefault())
 )
 
+// parameters of extra marshaler generation (optional)
+var (
+	marshalJsonPkg = flag.String("marshaljsonpkg", "encoding/json", "use to specify import path of package json")
+	marshalJson    = flag.Bool("marshaljson", false, "use to generate implementation for json.Marshaler and json.Unmarshaler")
+
+	marshalQsPkg = flag.String("marshalqspkg", "github.com/pasztorpisti/qs", "use to specify import path of package qs")
+	marshalQS    = flag.Bool("marshalqs", false, "use to generate implementation for qs.MarshalQS and qs.UnmarshalQS")
+)
+
 // Usage is a replacement usage function for the flags package.
 func Usage() {
 	fmt.Fprintf(os.Stderr, "Usage of go-stringer (stringer fork):\n")
