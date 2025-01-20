@@ -17,7 +17,7 @@ var (
 	output               = flag.String("output", "", "output file name\ndefault srcdir/<type>_string.go")
 	outputTransformClass = flag.String("outputtransform", "lower", "text-style name of default output name\navailable options: "+availableValuesForFlagsDefault())
 
-	trimprefix         = flag.String("trimprefix", "", "trim the `prefix` from the generated constant names")
+	trimprefix         = flag.String("trimprefix", "", "trim the `prefix` from the generated constant names (@me if same as type name)")
 	linecomment        = flag.Bool("linecomment", false, "use line comment text as printed text when present")
 	nameTransformClass = flag.String("nametransform", "none", "text-style name of String() data\navailable options: "+availableValuesForFlagsDefault())
 

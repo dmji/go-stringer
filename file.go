@@ -113,7 +113,11 @@ func (f *File) genDecl(node ast.Node) bool {
 			if c := vspec.Comment; f.lineComment && c != nil && len(c.List) == 1 {
 				v.name = strings.TrimSpace(c.Text())
 			} else {
-				v.name = strings.TrimPrefix(v.originalName, f.trimPrefix)
+				prefix := f.trimPrefix
+				if prefix == "@me" {
+					prefix = f.typeName
+				}
+				v.name = strings.TrimPrefix(v.originalName, prefix)
 				v.name = transformTextTo(f.nameTransform, v.name)
 			}
 			f.values = append(f.values, v)
