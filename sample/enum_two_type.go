@@ -1,6 +1,6 @@
 package sample
 
-//go:generate go run ./../. -type=TwoTypeFirst,TwoTypeSecond -trimprefix=@me -nametransform=snake_case_lower -outputtransform=snake_case_lower
+//go:generate go run ./.. -type=TwoTypeFirst,TwoTypeSecond -trimprefix=@me -nametransform=snake_case_lower -fromstringgenfn -marshaljson -outputtransform=snake_case_lower
 
 type TwoTypeFirst uint8
 

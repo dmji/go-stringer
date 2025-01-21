@@ -32,7 +32,7 @@ func (g *Generator) Printf(format string, args ...interface{}) {
 // generate produces the String method for the named type.
 func (g *Generator) generate(typeName string, values []Value) {
 	// Generate code that will fail if the constants change value.
-	g.Printf("func _() {\n")
+	g.Printf("\nfunc _() {\n")
 	g.Printf("\t// An \"invalid array index\" compiler error signifies that the constant values have changed.\n")
 	g.Printf("\t// Re-run the stringer command to generate them again.\n")
 	g.Printf("\tvar x [1]struct{}\n")
